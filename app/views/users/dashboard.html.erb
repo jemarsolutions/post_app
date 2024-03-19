@@ -18,9 +18,10 @@
           <% if current_user.posts.any? %>
             <div class="list-group">
               <% current_user.posts.each do |post| %>
-                <a href="<%= post_path(post) %>" class="list-group-item list-group-item-action">
+                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                   <%= post.title %>
-                </a>
+                  <%= link_to "View Post", post_path(post), class: "btn btn-secondary btn-sm" %>
+                </div>
               <% end %>
             </div>
           <% else %>

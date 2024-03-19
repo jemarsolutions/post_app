@@ -1,0 +1,25 @@
+<div class="container mt-5 mb-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="card-title">Subscribers</h1>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @subscribers.each do |subscriber| %>
+            <tr>
+              <td><%= subscriber.email %></td>
+              <td>
+                <%= button_to "Delete", subscriber_path(subscriber), method: :delete, class: "btn btn-danger btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @comments = @post.comments.order('created_at DESC')
   end
 
   # GET /posts/new
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.keywords = params[:post][:keywords].split(',').map(&:strip)
-    @post.user_id = current_user.id
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save

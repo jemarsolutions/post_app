@@ -1,32 +1,35 @@
-<% if user_signed_in? %>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <%= link_to "The Post", root_path, class: "navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <%= link_to "Posts", posts_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "My Posts", my_posts_path, class: "nav-link" %>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if current_user.avatar_url.present? %>
-                <%= image_tag(current_user.avatar_url, class: "avatar img-thumbnail rounded-circle me-1", style: "width: 40px") %>
-              <% end %><%= current_user.name %>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <%= render 'user/session_manager' %>
-            </ul>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <%= link_to "The Post", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Posts", posts_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Posts", my_posts_path, class: "nav-link" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if user_signed_in? && current_user.avatar_url.present? %>
+              <%= image_tag(current_user.avatar_url, class: "avatar img-thumbnail rounded-circle me-1", style: "width: 40px") %>
+              <%= current_user.name %>
+            <% elsif user_signed_in? && !current_user.avatar_url.present? %>
+              <%= current_user.name %>
+            <% else %>
+              Actions
+            <% end %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <%= render 'user/session_manager' %>
+          </ul>
+        </li>
+      </ul>
     </div>
-  </nav>
-<% end %>
+  </div>
+</nav>

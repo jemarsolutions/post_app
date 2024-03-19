@@ -1,0 +1,10 @@
+<div class="comment-<%= comment.id %> container" style="border: 1px solid black;padding: 1em;margin: 1em 0">
+  <%= comment.user.email %><br />
+  <% if current_user == comment.user %>
+    <div class="button-group float-end">
+      <%= button_to "Delete", [post, comment], method: :delete, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+  <hr />
+  <%= comment.body %>
+</div>

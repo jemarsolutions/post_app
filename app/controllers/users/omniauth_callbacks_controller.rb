@@ -21,6 +21,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 

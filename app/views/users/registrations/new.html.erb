@@ -21,6 +21,9 @@
   }
 </style>
 <div class="register-container">
+  <%= link_to(root_path) do %>
+    <%= content_tag :i, nil, class: "fas fa-newspaper fa-4x text-primary d-block mx-auto text-center mb-2 shadow-sm p-4 rounded", aria: { hidden: true } %>
+  <% end %>
   <h2>Register</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div class="register-form-field">

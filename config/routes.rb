@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  resources :subscribers
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
 
   get 'u/:id/', to: 'users#dashboard', as: 'user'
 
