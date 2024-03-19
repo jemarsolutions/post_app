@@ -70,3 +70,6 @@ end
 gem 'rubocop', '~> 1.62', '>= 1.62.1'
 gem 'devise', '~> 4.9', '>= 4.9.3'
 gem "image_processing", ">= 1.2"
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
