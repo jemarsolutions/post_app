@@ -1,0 +1,46 @@
+<style>
+  .hero-section {
+    background-image: url('<%= url_for(@post.image) %>'); /* Dummy image */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+  }
+
+  .hero-section:after {
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+</style>
+<div class="hero-section">
+  <div class="container z-2 position-relative">
+    <h1 class="hero-title"><%= @post.title %></h1>
+    <div class="row">
+      <% if current_user.id == @post.user_id %>
+        <div class="col-md-6 offset-md-3 d-flex align-items-center justify-content-center gap-2">
+          <%= link_to "Edit", edit_post_path, class: "btn btn-primary btn-lg" %>
+          <%= button_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <!-- Post content here -->
+      <p><%= @post.content %></p>
+    </div>
+  </div>
+</div>

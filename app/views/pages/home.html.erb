@@ -1,0 +1,65 @@
+<style></style>
+<!-- Hero Section -->
+<div class="hero-section">
+  <div class="hero-content">
+    <h1>Welcome to Our Blog</h1>
+    <p>Discover interesting articles, stories, and insights.</p>
+    <%= link_to "Explore Posts", posts_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+<!-- About Section -->
+<div class="about-section">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-md-6">
+        <img src="https://source.unsplash.com/600x400/?team" class="img-fluid rounded-circle mb-4" alt="About Us Image">
+      </div>
+      <div class="col-md-6 about-content">
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Featured Posts Section -->
+<div class="featured-posts-section">
+  <div class="container">
+    <h2 class="text-center mb-4">Featured Posts</h2>
+    <% if @posts.any? %>
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <%= image_tag post.image, class: "card-img-top", alt: "Featured Post Image", style: "height: 300px; object-fit: cover;" %>
+              <div class="card-body">
+                <h5 class="card-title"><%= post.title %></h5>
+                <p class="card-text"><%= truncate(post.content, length: 50) %></p>
+                <%= link_to "Read More", post_path(id: post.id), class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <!-- Repeat this for other featured posts -->
+      </div>
+    <% else %>
+      <p>No featured post!</p>
+    <% end %>
+  </div>
+</div>
+<!-- Subscribe Section -->
+<div class="subscribe-section">
+  <div class="container">
+    <h2 class="text-center mb-4">Subscribe to Our Newsletter</h2>
+    <p class="text-center">Stay updated with our latest posts by subscribing to our newsletter.</p>
+    <form action="#" method="post" class="form-inline justify-content-center mt-4">
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Your Email">
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Subscribe</button>
+    </form>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

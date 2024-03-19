@@ -1,0 +1,70 @@
+<style>
+  .post-card {
+    margin-bottom: 20px;
+    position: relative; /* Enable positioning */
+    border-radius: 20px; /* Same radius as the container */
+  }
+
+  .post-card .card-title {
+    font-size: 1.5rem;
+  }
+
+  .post-card .card-text {
+    color: #555;
+  }
+
+  .post-card a.btn {
+    color: #fff;
+    background-color: #007bff; /* Blue */
+    border-color: #007bff;
+  }
+
+  .post-card a.btn:hover {
+    background-color: #0056b3; /* Darker Blue */
+    border-color: #0056b3;
+  }
+
+  .keyword-box {
+    background-color: #f1f1f1; /* Light Gray */
+    color: #555;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    left: 10px; /* Distance from left */
+    margin-top: 20px; /* Margin top */
+    width: fit-content;
+  }
+</style>
+<main>
+  <h1 class="text-center mt-4">My Posts</h1>
+  <div class="container mt-4 mb-4">
+    <% if @my_posts.any? %>
+      <div class="row">
+        <% @my_posts.each do |post| %>
+          <div class="col-md-4">
+            <div class="post-card shadow">
+              <div class="card p-2">
+                <!-- Add image here -->
+                <%= image_tag post.image, class: "card-img-top", alt: "Featured Post Image", style: "height: 300px; object-fit: cover;" %>
+                <div class="card-body p-0 pt-2">
+                  <h5 class="card-title"><%= post.title %></h5>
+                  <p class="card-text"><%= truncate(post.content, length: 50) %></p>
+                  <%= link_to "Show this post", post, class: "btn btn-primary" %>
+                  <div class="d-flex flex-row gap-2">
+                    <% post.keywords.each do |keyword| %>
+                      <div class="keyword-box">
+                        <%= keyword %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>No posts for now!</p>
+    <% end %>
+  </div>
+</main>
